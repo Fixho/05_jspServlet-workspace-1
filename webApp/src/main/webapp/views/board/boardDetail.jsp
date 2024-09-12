@@ -90,7 +90,27 @@
         
         <script>
         	$(function() {
-        		fnReplyList();
+        		fnReplyList(); // 페이지 로드시 초기 댓글 목록 조회를 위해서
+        		//setInterval(fnReplyList, 2000); // 2초간격마다 매번 조회 요청 (실시간으로 보여지게 처리가능)
+        		
+        		// 삭제버튼 클릭시 댓글 삭제요청용 ajax 호출
+        		//$('#reply-area span').on('click', function(){ // 이벤트 제대로 안걸림
+        		$('#reply-area').on('click', 'span', function() {
+        			$.ajax({
+        				url: '<%=contextPath%>/delete.re',
+        				data: {no: $(this).data('no')},
+        				success: function(res){
+        					if(res > 0){
+        						fnReplyList();
+        					}
+        				},
+        				error: function() {
+        					console.log('댓글 삭제용 ajax 통신 실패');
+        				}
+        			})
+        			
+        		})
+        		
         	})
         	
         	// 댓글 작성용 함수 (ajax요청)
@@ -135,7 +155,7 @@
         								  +		'<td>' + res[i].replyContent;
         								  
         					  if(res[i].replyWriter == '<%= loginUser == null ? "" : loginUser.getUserId()%>'){
-        						  trEl += ' <span>x</span>';
+        						  trEl += ' <span data-no="' + res[i].replyNo + '">x</span>';
         					  }
         					  
         					  trEl += 	'</td>'

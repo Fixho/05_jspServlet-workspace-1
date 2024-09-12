@@ -257,6 +257,14 @@
 		  )
 	</entry>
 	
+	<entry key="deleteReply">
+		UPDATE
+		       REPLY
+		   SET 
+		   		 STATUS = 'N'
+		 WHERE 
+		 			 REPLY_NO = ?
+	</entry>
 	
 	
 	

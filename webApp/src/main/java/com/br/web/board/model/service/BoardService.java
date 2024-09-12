@@ -189,7 +189,18 @@ public class BoardService {
 		return result;
 	}
 	
-	
+	public int deleteReply(int replyNo) {
+		Connection conn = getConnection();
+		int result = bDao.deleteReply(conn, replyNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
+	}
 	
 	
 }
