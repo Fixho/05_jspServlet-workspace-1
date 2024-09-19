@@ -12,6 +12,7 @@
 	3. 우클릭 New 목록 커스터마이징 (선택사항)
 	   ㄴ [Window] - [Perspective] - [Customize Perspective] - Shortcuts 탭
 	      - General > File, Folder
+				
 	      - Java    > Class, Interface, Package, Source Folder
 	      - Web			> CSS File, HTML File, JSP File, Dynamic Web Project, Servlet 
 	      - XML     > XML File
